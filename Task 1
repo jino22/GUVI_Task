@@ -1,1 +1,41 @@
 
+
+jinoy@Jino_Yajiv MINGW64 /f/vagrant/centos
+$ vagrant ssh
+Last login: Thu Dec 14 03:00:22 2023 from 10.0.2.2
+[vagrant@localhost ~]$ clear
+[vagrant@localhost ~]$ ls
+newfile01.txt  service1log
+[vagrant@localhost ~]$ ll
+total 8
+-rw-rw-r--. 1 vagrant vagrant 24 Dec 14 03:21 newfile01.txt
+-rw-rw-r--. 1 vagrant vagrant 24 Dec 14 03:24 service1log
+[vagrant@localhost ~]$ ls -al
+total 20
+drwx------. 3 vagrant vagrant 114 Dec 14 03:24 .
+drwxr-xr-x. 3 root    root     21 Apr 30  2020 ..
+-rw-r--r--. 1 vagrant vagrant  18 Apr  1  2020 .bash_logout
+-rw-r--r--. 1 vagrant vagrant 193 Apr  1  2020 .bash_profile
+-rw-r--r--. 1 vagrant vagrant 231 Apr  1  2020 .bashrc
+-rw-rw-r--. 1 vagrant vagrant  24 Dec 14 03:21 newfile01.txt
+-rw-rw-r--. 1 vagrant vagrant  24 Dec 14 03:24 service1log
+drwx------. 2 vagrant vagrant  29 Apr 30  2020 .ssh
+[vagrant@localhost ~]$ uname
+Linux
+[vagrant@localhost ~]$ touch Task1.txt
+[vagrant@localhost ~]$ ls
+newfile01.txt  service1log  Task1.txt
+[vagrant@localhost ~]$ vi Task1.txt
+[vagrant@localhost ~]$ touch file{1..20}.txt
+[vagrant@localhost ~]$ for i in {1..5}; do
+>     mv "file${i}.txt" "file${i}.yml"
+> done
+[vagrant@localhost ~]$
+[vagrant@localhost ~]$ echo "Files created and renamed successfully."
+Files created and renamed successfully.
+[vagrant@localhost ~]$ ls
+file10.txt  file14.txt  file18.txt  file2.yml  file6.txt  newfile01.txt
+file11.txt  file15.txt  file19.txt  file3.yml  file7.txt  service1log
+file12.txt  file16.txt  file1.yml   file4.yml  file8.txt  Task1.txt
+file13.txt  file17.txt  file20.txt  file5.yml  file9.txt
+
