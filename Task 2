@@ -1,0 +1,11 @@
+[root@localhost home]# touch demo.txt
+[root@localhost home]# ll
+total 0
+-rw-r--r--. 1 root    root      0 Dec 21 04:09 demo.txt
+drwx------. 6 vagrant vagrant 257 Dec 21 03:55 vagrant
+[root@localhost home]# chmod 764 demo.txt
+[root@localhost home]# ll
+total 0
+-rwxrw-r--. 1 root    root      0 Dec 21 04:09 demo.txt
+drwx------. 6 vagrant vagrant 257 Dec 21 03:55 vagrant
+[root@localhost home]#
