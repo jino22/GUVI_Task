@@ -1,0 +1,83 @@
+[vagrant@localhost ~]$ sudo su
+[root@localhost vagrant]# cd /var/www/html
+[root@localhost html]# ls
+index.html
+[root@localhost html]# touch Testing.sh
+[root@localhost html]# ls
+index.html  Testing.sh
+[root@localhost html]# vi Testing.sh
+[root@localhost html]# sh Testing.sh
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: mirrors.nxtgen.com
+ * extras: mirrors.nxtgen.com
+ * updates: mirrors.nxtgen.com
+Resolving Dependencies
+--> Running transaction check
+---> Package httpd.x86_64 0:2.4.6-99.el7.centos.1 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+==============================================================================================================================
+ Package                  Arch                      Version                                  Repository                  Size
+==============================================================================================================================
+Installing:
+ httpd                    x86_64                    2.4.6-99.el7.centos.1                    updates                    2.7 M
+
+Transaction Summary
+==============================================================================================================================
+Install  1 Package
+
+Total download size: 2.7 M
+Installed size: 9.4 M
+Downloading packages:
+httpd-2.4.6-99.el7.centos.1.x86_64.rpm                                                                 | 2.7 MB  00:00:00
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : httpd-2.4.6-99.el7.centos.1.x86_64                                                                         1/1
+  Verifying  : httpd-2.4.6-99.el7.centos.1.x86_64                                                                         1/1
+
+Installed:
+  httpd.x86_64 0:2.4.6-99.el7.centos.1
+
+Complete!
+Created symlink from /etc/systemd/system/multi-user.target.wants/httpd.service to /usr/lib/systemd/system/httpd.service.
+[root@localhost html]# systemctl status httpd
+● httpd.service - The Apache HTTP Server
+   Loaded: loaded (/usr/lib/systemd/system/httpd.service; enabled; vendor preset: disabled)
+   Active: active (running) since Thu 2023-12-21 07:39:42 UTC; 35s ago
+     Docs: man:httpd(8)
+           man:apachectl(8)
+ Main PID: 1953 (httpd)
+   Status: "Total requests: 0; Current requests/sec: 0; Current traffic:   0 B/sec"
+   CGroup: /system.slice/httpd.service
+           ├─1953 /usr/sbin/httpd -DFOREGROUND
+           ├─1954 /usr/sbin/httpd -DFOREGROUND
+           ├─1955 /usr/sbin/httpd -DFOREGROUND
+           ├─1956 /usr/sbin/httpd -DFOREGROUND
+           ├─1957 /usr/sbin/httpd -DFOREGROUND
+           └─1958 /usr/sbin/httpd -DFOREGROUND
+
+Dec 21 07:39:42 localhost.localdomain systemd[1]: Starting The Apache HTTP Server...
+Dec 21 07:39:42 localhost.localdomain httpd[1953]: AH00558: httpd: Could not reliably determine the server's fully qua...ssage
+Dec 21 07:39:42 localhost.localdomain systemd[1]: Started The Apache HTTP Server.
+Hint: Some lines were ellipsized, use -l to show in full.
+[root@localhost html]# curl http://localhost:80
+<h1>Hello... Thanks for visiting us:) </h1>
+
+
+____________________________________________________________________________
+
+Script:
+
+
+#!/bin/bash
+sudo yum install httpd -y
+ systemctl start httpd
+ systemctl enable httpd
+ echo "<h1>Hello... Thanks for visiting us:) </h1>" >/var/www/html/index.html
+
+
