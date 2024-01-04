@@ -1,0 +1,65 @@
+jino@JinoYajiv:~$ sudo apt update
+[sudo] password for jino:
+Get:1 http://security.ubuntu.com/ubuntu jammy-security InRelease [110 kB]
+Hit:2 http://archive.ubuntu.com/ubuntu jammy InRelease
+Get:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [119 kB]
+Hit:4 http://archive.ubuntu.com/ubuntu jammy-backports InRelease
+Get:5 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [1263 kB]
+Get:6 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [1020 kB]
+Fetched 2512 kB in 4s (664 kB/s)
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+41 packages can be upgraded. Run 'apt list --upgradable' to see them.
+jino@JinoYajiv:~$ sudo apt install docker.io -y
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+docker.io is already the newest version (24.0.5-0ubuntu1~22.04.1).
+0 upgraded, 0 newly installed, 0 to remove and 41 not upgraded.
+jino@JinoYajiv:~$ sudo service docker start
+jino@JinoYajiv:~$ service docker status
+● docker.service - Docker Application Container Engine
+     Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor pr>     Active: active (running) since Thu 2024-01-04 19:22:28 IST; 1h 29min a>TriggeredBy: ● docker.socket
+       Docs: https://docs.docker.com
+   Main PID: 1741 (dockerd)
+      Tasks: 13
+     Memory: 47.3M
+     CGroup: /system.slice/docker.service
+             └─1741 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/>
+Jan 04 19:22:28 JinoYajiv dockerd[1741]: time="2024-01-04T19:22:28.26751009>Jan 04 19:22:28 JinoYajiv dockerd[1741]: time="2024-01-04T19:22:28.34028523>Jan 04 19:22:28 JinoYajiv systemd[1]: Started Docker Application Container >Jan 04 20:28:38 JinoYajiv dockerd[1741]: time="2024-01-04T20:28:38.49757160>Jan 04 20:28:38 JinoYajiv dockerd[1741]: time="2024-01-04T20:28:38.49810877>Jan 04 20:30:24 JinoYajiv dockerd[1741]: time="2024-01-04T20:30:24.19408960>Jan 04 20:30:24 JinoYajiv dockerd[1741]: time="2024-01-04T20:30:24.19421920>Jan 04 20:30:41 JinoYajiv dockerd[1741]: time="2024-01-04T20:30:41.07161759>Jan 04 20:30:41 JinoYajiv dockerd[1741]: time="2024-01-04T20:30:41.07174325>Jan 04 20:30:48 JinoYajiv dockerd[1741]: time="2024-01-04T20:30:48.60693523>
+jino@JinoYajiv:~$ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+jino@JinoYajiv:~$ docker images
+REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
+hello-world   latest    d2c94e258dcb   8 months ago   13.3kB
+jino@JinoYajiv:~$ docker pull nginx
+Using default tag: latest
+latest: Pulling from library/nginx
+af107e978371: Pull complete
+336ba1f05c3e: Pull complete
+8c37d2ff6efa: Pull complete
+51d6357098de: Pull complete
+782f1ecce57d: Pull complete
+5e99d351b073: Pull complete
+7b73345df136: Pull complete
+Digest: sha256:2bdc49f2f8ae8d8dc50ed00f2ee56d00385c6f8bc8a8b320d0a294d9e3b49026
+Status: Downloaded newer image for nginx:latest
+docker.io/library/nginx:latest
+jino@JinoYajiv:~$ docker images
+REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
+nginx         latest    d453dd892d93   2 months ago   187MB
+hello-world   latest    d2c94e258dcb   8 months ago   13.3kB
+jino@JinoYajiv:~$
+jino@JinoYajiv:~$ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+jino@JinoYajiv:~$ docker run -d -p 8080:80 --name Testing nginx
+dca9f1fdeb707453b0fbb82d2d27888cf5bb03745368a60cf10aca6827f0d233
+jino@JinoYajiv:~$ docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                   NAMES
+dca9f1fdeb70   nginx     "/docker-entrypoint.…"   20 seconds ago   Up 19 seconds   0.0.0.0:8080->80/tcp, :::8080->80/tcp   Testing
+jino@JinoYajiv:~$ docker stop dca9f1fdeb70
+dca9f1fdeb70
+jino@JinoYajiv:~$ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+jino@JinoYajiv:~$
