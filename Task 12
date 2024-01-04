@@ -1,0 +1,50 @@
+jino@JinoYajiv:~$ docker images
+
+REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
+nginx         latest    d453dd892d93   2 months ago   187MB
+hello-world   latest    d2c94e258dcb   8 months ago   13.3kB
+
+jino@JinoYajiv:~$ docker ps
+
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+jino@JinoYajiv:~$ docker ps -a
+CONTAINER ID   IMAGE         COMMAND                  CREATED             STATUS                         PORTS     NAMES
+dca9f1fdeb70   nginx         "/docker-entrypoint.…"   About an hour ago   Exited (0) About an hour ago             Testing
+3618c015e6b2   hello-world   "/hello"                 2 hours ago         Exited (0) 2 hours ago                   sad_borg
+
+jino@JinoYajiv:~$ vi docker-compose.yml
+
+jino@JinoYajiv:~$ docker-compose up -d
+Yonex is up-to-date
+jino@JinoYajiv:~$ docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                   NAMES
+29eb6cfdebb6   nginx     "/docker-entrypoint.…"   35 minutes ago   Up 35 minutes   0.0.0.0:8081->80/tcp, :::8081->80/tcp   Yonex
+
+jino@JinoYajiv:~$ docker commit Yonex jinoyajiv/badminton:badminton
+
+sha256:dc41b95a726f95ef1dea5453646963f81e20e462207b2e1524d05d32171de23cjino@JinoYajiv:
+
+~$ docker push jinoyajiv/badminton:badminton
+The push refers to repository [docker.io/jinoyajiv/badminton]
+43d1e2455511: Pushed
+b074db3b55e1: Mounted from library/nginx
+e50c68532c4a: Mounted from library/nginx
+f6ba584ca3ec: Mounted from library/nginx
+01aaa195cdad: Mounted from library/nginx
+2a13e6a7cca6: Mounted from library/nginx
+370869eba6e9: Mounted from library/nginx
+7292cf786aa8: Mounted from library/nginx
+badminton: digest: sha256:56e4c032435c24e864b7854c3f95a31499b4d2f2f7caf63c50fccfc14ad8c837 size: 1985
+jino@JinoYajiv:~$ docker pull jinoyajiv/badminton:badminton
+badminton: Pulling from jinoyajiv/badminton
+Digest: sha256:56e4c032435c24e864b7854c3f95a31499b4d2f2f7caf63c50fccfc14ad8c837
+Status: Image is up to date for jinoyajiv/badminton:badminton
+docker.io/jinoyajiv/badminton:badminton
+jino@JinoYajiv:~$ docker images
+REPOSITORY            TAG         IMAGE ID       CREATED          SIZE
+jinoyajiv/badminton   badminton   dc41b95a726f   16 minutes ago   187MB
+ubuntu                latest      174c8c134b2a   3 weeks ago      77.9MB
+nginx                 latest      d453dd892d93   2 months ago     187MB
+hello-world           latest      d2c94e258dcb   8 months ago     13.3kB
+jino@JinoYajiv:~$
+
